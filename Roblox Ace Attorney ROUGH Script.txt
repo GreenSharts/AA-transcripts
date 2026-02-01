@@ -1,0 +1,226 @@
+Here is a revised version of the script. The stakes have been raised from Robbery to Murder. The logic remains similar (Time of Death / Alibi / The Grease), but the context is now a homicide investigation.
+SCENE 1: THE DEFENSE LOBBY
+[Player]: Ok! I got this! First trial is always the easiest? Right?
+[Player]: Even if it is... a murder trial.
+???: (Clicking her pen)
+[Player]: Ahh!
+???: You need to Chill out!
+Clara Case appears
+Clara Case:
+You aren't facing anyone too hard. You're facing Percy Petty. They call him the "Rookie Crusher."
+[Player]:
+"R-R-Rookie Crusher"? That sounds terrifying. especially with a life on the line.
+Clara Case: (Laughs)
+Don't worry. He calls himself that. He’s been a prosecutor for ten years, but he only takes cases against newbies like you to boost his ego. He’s totally beatable if you keep your cool. Just remember: The victim, Mr. Billions, was found in the vault. Your client is the only suspect.
+
+SCENE 2: THE COURTROOM
+Judge Gavel:
+Order! The court is now in session for the trial of Robbie Banks. The charge is Murder in the First Degree.
+[Player]:
+The Defense is ready, Your Honor!
+Judge Gavel:
+And the Prosecution?
+Percy Petty: (Smirking, polishing his glasses)
+The Prosecution has been ready since before this rookie passed the bar exam, Your Honor. I assume this will be quick? I have a hair appointment at 3:00.
+Judge Gavel:
+This is a murder trial, Mr. Petty. Treat it with respect. Your opening statement?
+Percy Petty: (Chuckles condescendingly)
+It is quite simple, really. The defendant, Mr. Banks, was found inside the vault standing over the body of the Bank Manager, Mr. Billions. The victim was struck by a heavy object. It is an open-and-shut case. I recommend the Defense plead guilty now and save us all the embarrassment.
+[Player]: (Thinking)
+He's treating a murder like a parking ticket. I can’t wait to wipe that smirk off his face.
+
+SCENE 3: THE WITNESS
+Percy Petty:
+The Prosecution calls the brave Bank Security Guard, Sgt. Otto Lock!
+(Sgt. Otto Lock rolls onto the witness stand, stands up, and salutes stiffly)
+Otto Lock:
+Security Officer Lock reporting for duty! Sector 4 is secured! The target has been neutralized—er, I mean, the victim was found! Over!
+Judge Gavel:
+Mr. Lock... please lower your hand.
+Otto Lock:
+Negative, Your Honor! Constant vigilance is the key to survival!
+Percy Petty: (Smug)
+As you can see, a dedicated professional. Sergeant, tell the court what you saw regarding the murder.
+Otto Lock:
+[TESTIMONY START] “Target Down”
+"I was stationed at the Gold Zone (the vault). At 1300 hours (1:00 PM), I took a tactical hydration break."
+"Suddenly, the perimeter was breached! I heard a scuffle!"
+"I looked in and saw the hostile (Robbie) standing over the KIA (Killed in Action) holding the murder weapon!"
+"I engaged and apprehended the suspect immediately!"
+Percy Petty:
+We have cold, hard facts. Your Honor, I present the decisive evidence.
+[EVIDENCE PRESENTED: AUTOPSY REPORT]
+(Time of death: Between 12:45 PM and 1:15 PM. Cause: Blunt force trauma).
+Percy Petty:
+The victim died right around 1:00 PM. Exactly when the witness saw the defendant.
+Statement 1: "I was stationed at the Gold Zone guarding the VIP... er, the Manager."
+[HOLD IT!]
+[Player]: You were guarding Mr. Billions?
+Otto Lock: Affirmative! He was inspecting the assets. I was his shield!
+Statement 2: "At 1300 hours (1:00 PM), I took a tactical hydration break."
+[HOLD IT!]
+[Player]: You left your post?
+Otto Lock: Affirmative! Even elite warriors need moisture! I turned my back for exactly ten seconds to engage the water fountain.
+Statement 3: "I looked in and saw the hostile (Robbie) standing over the KIA holding the murder weapon!"
+[HOLD IT!]
+[Player]: You saw him holding the weapon?
+Otto Lock: Affirmative! A heavy gold statue! He looked ready to strike again!
+Statement 4: "I engaged and apprehended the suspect immediately! Threat neutralized!"
+[HOLD IT!]
+[Player]: Did he try to run?
+Otto Lock: The target cried and asked why the nice man on the floor was sleeping. A pathetic attempt at psychological warfare!
+
+THE FIRST CONTRADICTION
+[OBJECTION!] (Player slams desk)
+[Player]:
+Sgt. Lock! You claim you apprehended Robbie inside the vault at 1300 hours (1:00 PM) standing over the body, correct?
+Otto Lock:
+Affirmative! My internal clock is synchronized with the atomic network!
+[Player]:
+You’re lying.
+Otto Lock:
+!!!
+[Player]:
+At 1:00 PM exactly, Robbie Banks was using the ATM in the lobby!
+[PRESENT: ATM RECEIPT]
+Otto Lock: (Salutes nervously)
+...Correction?
+[Player]:
+Unless he can teleport, he couldn't be murdering the manager in the vault and withdrawing $20 at the ATM at the same time. You’re lying about when this happened!
+Percy Petty: (Squeaks)
+O-Objection! Perhaps the Sergeant's watch was... lagging due to... solar flares?
+Otto Lock:
+Roger that! My chronometer took a hit during a previous skirmish! I must have apprehended him a few minutes later!
+Judge Gavel:
+Witness, revise your testimony. This is a murder trial, accuracy is paramount.
+
+TESTIMONY REVISION
+Witness Testimony: What I actually saw
+"Correction! It was actually 13:10 (1:10 PM) when I spotted the target."
+"The target walked right into the vault. He just strolled in like a civilian!"
+"He must have struck the victim moments before I entered!"
+Percy Petty: (Chuckles)
+The Prosecution has evidence to prove the defendant was the killer, regardless of the time.
+[Player]: Huh!?
+Percy Petty:
+[EVIDENCE PRESENTED: GREASE STAINS ON STATUE]
+When the Defendant grabbed the heavy gold statue to strike the victim, he left grease on the handle.
+[Player]:
+Ack!
+Judge Gavel:
+Grease?
+Percy Petty:
+Mechanic's grease. The defendant fixes motorcycles as a hobby. His hands were dirty. He grabbed the statue, killed the manager, and left his mark.
+Judge Gavel:
+The Defense may cross-examine.
+
+THE SECOND CONTRADICTION
+Statement 1: "Correction! It was actually 13:10 (1:10 PM) when I spotted the target."
+[HOLD IT!]
+[Player]: Are you sure this time?
+Otto Lock: Affirmative! I cross-referenced with the sun's position!
+Statement 2: "The target walked right into the vault. He just strolled in like a civilian!"
+[HOLD IT!]
+[Player]: He just walked in? Was the door open?
+Otto Lock: It must have been! The target bypassed the perimeter with zero resistance!
+Statement 3: "He must have struck the victim moments before I entered!"
+[HOLD IT!]
+[Player]: Did you hear the hit?
+Otto Lock: Negative! Silenced impact!
+[OBJECTION!] (Player points finger)
+[Player]:
+Sgt. Lock! You claim Robbie "just walked in" at 1:10 PM?
+Otto Lock:
+That is the current intel, yes!
+[Player]:
+[TAKE THAT!] (Presenting Bank Security Manual)
+[Player]:
+Impossible! According to the Bank's own manual, the vault Auto-Lock engages at 12:55 PM!
+Percy Petty:
+W-What?!
+[Player]:
+After 12:55 PM, that door is sealed tight. It cannot be opened without a Key Card! Robbie couldn't have "just strolled in" at 1:10 PM because the door would have been locked! The victim was trapped inside!
+Otto Lock: (Sweating, tapping broken radio)
+Mayday! Logic shields failing!
+[Player]:
+The only way Robbie could get in... is if YOU unlocked it for him!
+Percy Petty:
+Objection! Why would the guard unlock the vault for a murderer? That's absurd!
+Otto Lock:
+Affirmative! Why would I aid the enemy? Wait... I remember now! There was a maintenance issue!
+Judge Gavel:
+...A maintenance issue? Witness, this is your last chance. Tell the truth!
+
+TESTIMONY #3: THE "MAINTENANCE" (The Final Lie)
+Statement 1: "I didn't unlock it for him! I unlocked it to... inspect the hinges!"
+[HOLD IT!]
+[Player]:
+Inspect the hinges? While a murder was happening?
+Otto Lock:
+A squeaky hinge is a tactical liability! I had to grease it!
+Statement 2: "But I stayed strictly at the entrance! I never fully entered the 'Gold Zone'!"
+[HOLD IT!]
+[Player]:
+You never went inside?
+Otto Lock:
+Negative! I maintained a defensive position at the doorway to fix the hinges!
+Statement 3: "I was busy fixing the door, so I didn't see the body until it was too late!"
+[HOLD IT!]
+[Player]:
+You were "fixing" it? With what tools?
+Otto Lock:
+Uh... standard issue... tactical wrench? And... lubricants?
+[Should I press him on what type of lubricants?]
+[Yes] = continue no = give up and go to statement 3
+[Player]:
+Your Honor! The Defense would like the Witness to add what type of lubricant they used!
+Percy Petty:
+Objection! Your Honor! There's no relevance!
+Judge Gavel:
+Does the Defense believe that this is relevant information?
+[Yes] = continue no = give up and go to statement 3
+Judge Gavel:
+Alright then! Witness, add it to your testimony.
+Otto Lock:
+Sir, yes sir!
+(then changes statement 3)
+Statement 3 (Revised): "I was busy fixing the door hinges with heavy-duty grease, so I didn't see the body until it was too late!"
+
+THE FINAL BLOW
+(Present Murder Weapon)
+[OBJECTION!]
+[Player]:
+Sgt. Lock! You claim you were fixing the door hinges and never went deeper into the vault?
+Otto Lock:
+Affirmative! I held the perimeter at the doorway! Leaving my post would be desertion!
+[Player]:
+Then explain why there was grease on the murder weapon.
+(Presenting Murder Weapon)
+[Player]:
+(Percy Petty Objects)
+Percy Petty:
+So? What does the grease have to do with this?
+[Player]
+[Desk Slam]
+[Player]:
+Mr. Petty, you claimed earlier that the grease on the murder weapon belonged to the defendant because he's a mechanic.
+Percy Petty:
+Correct!
+[Player]:
+But Sgt. Lock just testified that HE was using heavy-duty grease to fix the hinges!
+Otto Lock:
+Ack! ...Enemy radar... detected!
+[Player]:
+If you were only fixing the door hinges at the entrance, how did YOUR grease get on the murder weapon located 30 feet away on the back wall?!
+Percy Petty:
+(Squeaks) M-Maybe the grease... flew through the air via tactical wind currents?
+[Player]:
+No! The only way the grease got there is if Otto walked all the way to the back of the vault, picked up the statue, and struck Mr. Billions himself!
+Otto Lock: FAILURE! FAILURE! FAILURE!
+I... The door... it was fixed! But the Manager... he was going to cut the security budget! It was a tactical elimination!
+CLEAN UP ON AISLE... FAILED.
+
+Judge Gavel:
+Order! Bailiff, arrest this man for the murder of Mr. Billions!
+
+
