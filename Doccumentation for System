@@ -1,0 +1,921 @@
+Info about roblox engine.
+
+base engine:
+--[[
+
+- BASIC SETUP -
+1. For each model under "Steven's Visual Novel Engine", place it into the service
+specified, then press Ctrl+U with the model selected to ungroup it.
+2. If your game isn't published, publish it now using Alt+P.
+3. In the Home tab under the Roblox Studio topbar, click Game Settings.
+4. Click Security.
+5. Toggle "Enable Studio Access to API Services". This allows you to test save
+data in Roblox Studio.
+6. You're done! You may keep this folder for reference or delete it entirely.
+
+
+- PLAYING THE DEMO -
+To confirm that you have set up the engine correctly, verify that everything is
+functional, and understand what SVNE is capable of, I highly recommend playing
+through the premade demo provided in this free model.
+
+Once you've completed basic setup, you can test the demo simply by playtesting
+the game. The demo comes with two chapters and provides a general overview of
+the features SVNE comes with.
+
+Next, take a look at lesson 2: Making Your First Story to learn how to use SVNE.
+
+
+- UPDATING THE ENGINE -
+If a new version of SVNE comes out and you would like to update to the newest
+version, follow these instructions:
+1. Delete all SVNE scripts and folders, excluding any new objects you created.
+2. Import the SVNE free model and follow the setup instructions.
+3. Done!
+
+Do note that if you directly modify the SVNE scripts or vnGui, your changes will
+be wiped every time you update.
+
+]]
+--[[
+
+- INTRODUCTION -
+In this tutorial, we're going to cover the very basics of how to use SVNE
+through scripting. If you have zero scripting experience, don't worry! I'll walk
+you through the process step-by-step.
+
+
+- DISABLING THE DEMO -
+First, you'll want to disable the demo script to make sure it doesn't interfere
+with your script.
+
+Select "demo" under StarterPlayer > StarterPlayerScripts, and set the
+"Enabled" property to false.
+
+You can also delete the script if you would prefer, but I advise against this,
+as it may be useful to reference later.
+
+
+- LOADING SVNE -
+To start using SVNE, create a LocalScript and add it to StarterPlayerScripts.
+Then, copy and paste the following code into your new script:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+---------------------------------------------------------------------------------
+This code is responsible for loading the vnModule script, which contains all the
+tools used to create your story.
+
+
+- MAKING YOUR FIRST SCENE -
+SVNE organizes story sequences into scenes and chapters.
+
+A scene is a sequence of story events. This includes dialog, background changes,
+sound effects, sprite creation and modification, etc. A scene is represented by
+a function.
+
+A chapter is a sequence of scenes. When a chapter is played, each scene in the
+chapter is played in order until the chapter finishes or the player exits to
+the main menu.
+
+To create a scene, first create a function by adding the following code to the
+end of your script:
+-----------------------------------CODE SAMPLE-----------------------------------
+function myFirstScene()
+	
+end
+---------------------------------------------------------------------------------
+
+Inside your function is where we will place the code to control the scene. For
+now, we're just going to play some dialog, using the vnm.dialog function.
+-----------------------------------CODE SAMPLE-----------------------------------
+function myFirstScene()
+	vnm.dialog({dialog = "Hello, world!"})
+end
+---------------------------------------------------------------------------------
+
+To confirm we've written our scene correctly, execute your function by typing
+myFirstScene() at the end. Your code should now look something like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	vnm.dialog({dialog = "Hello, world!"})
+end
+
+myFirstScene()
+---------------------------------------------------------------------------------
+
+Now, run a quick playtest. You should see a dialog box appear, reading out the
+text "Hello, world!"
+
+If this doesn't work, double check to make sure you've typed everything
+correctly. Make sure all letters that should be capital are capital, and all
+letters that should be lowercase are lowercase.
+
+IMPORTANT:
+Connections created inside of a scene function will NOT be automatically
+disconnected when exiting the story. You must log them using
+vnm.logStoryConnection().
+
+
+- MAKING YOUR FIRST CHAPTER -
+Congratulations! You've created a function that serves as your first scene.
+
+However, we're missing a lot of critical features. The "New game" button doesn't
+work, the chapter select is empty, and you can't save and load!
+
+To make use of these features, we're going to have to register this scene into
+vnModule, then wrap it inside a chapter.
+First, delete the line that executes the myFirstScene function.
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	vnm.dialog({dialog = "Hello, world!"})
+end
+---------------------------------------------------------------------------------
+
+Then, at the end of your script, add the following code:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.registerScene({
+	sceneName = "myFirstScene",
+	sceneFunction = myFirstScene,
+})
+---------------------------------------------------------------------------------
+
+Now, your scene is registered, but we have no way to play it!
+
+To reach this scene, we're going to have to wrap it inside a chapter, then play
+that chapter.
+
+Register a chapter by adding the following code at the end of your script:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.registerChapter({
+	chapterName = "My First Scene",
+	chapterIndex = 1,
+	scenes = {"myFirstScene"},
+})
+---------------------------------------------------------------------------------
+
+Your script should now look like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	vnm.dialog({dialog = "Hello, world!"})
+end
+
+vnm.registerScene({
+	sceneName = "myFirstScene",
+	sceneFunction = myFirstScene,
+})
+
+vnm.registerChapter({
+	chapterName = "My First Scene",
+	chapterIndex = 1,
+	scenes = {"myFirstScene"},
+})
+---------------------------------------------------------------------------------
+
+Because we registered chapter 1, we can now use the "New game" button to play our
+chapter, and all other features should now be functional!
+
+Start a playtest, then click "New game" to begin chapter 1. Once you finish, you
+will automatically be sent back to the menu.
+
+IMPORTANT:
+Saving and loading only works for the beginning of a scene. Saving will only save
+from the moment the current scene began, and loading will only load from the
+beginning of the latest scene. For this reason, you should avoid making scenes
+excessively long!
+
+Congratulations! You've technically made a complete visual novel, with a clear
+start and end.
+
+...Technically. Let's be honest, this is extremely boring, and it leaves us with
+a lot to be desired.
+
+If you're confident enough with scripting that you feel you could figure this
+out from here, try reading through the demo and documentation scripts to get
+your footing.
+
+Otherwise, continue to lesson 3: Sprites.
+
+]]
+
+--[[
+
+- INTRODUCTION - [SPRITES ARE NOT USED IN MY CUSTOM ENGINE]
+In SVNE, sprites are how you represent objects or people in the environment. For
+this lesson, we'll be focusing primarily on using sprites as characters.
+
+
+- CREATING A SPRITE -
+Insert the following code at the top of your myFirstScene function:
+-----------------------------------CODE SAMPLE-----------------------------------
+local dummySprite = vnm.createSprite({
+	name = "Dummy",
+	defaultImageName = "dummy",
+})
+---------------------------------------------------------------------------------
+
+This will create a new sprite object, named "Dummy", using the image named
+"dummy" in Workspace > vnSystem > images > sprites, and store it as a variable
+called "dummySprite".
+
+IMPORTANT:
+The size of the sprite will be based off the Size property of the image in
+vnSystem > images > sprites. If you want to add a new sprite image, you'll want
+to make sure you correctly set the Size property, as well as the AspectRatio
+property of the UIAspectRatioConstraint object underneath the image.
+
+Now, let's edit our dialog function so that we indicate "Dummy" is the character
+speaking.
+Edit the line where you execute vnm.dialog so that it looks like so:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.dialog({subject = "Dummy", dialog = "Hello, world!"})
+---------------------------------------------------------------------------------
+
+This will indicate to both the player and SVNE that this line is being spoken by
+Dummy.
+
+Let's add a few more lines of back-and-forth dialog.
+Add this code after the line we just edited:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.dialog({subject = "You", dialog = "Hi, how are you?"})
+vnm.dialog({subject = "Dummy", dialog = "Great, thanks!"})
+---------------------------------------------------------------------------------
+
+Your script should look like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	local dummySprite = vnm.createSprite({
+		name = "Dummy",
+		defaultImageName = "dummy",
+	})
+	vnm.dialog({subject = "Dummy", dialog = "Hello, world!"})
+	vnm.dialog({subject = "You", dialog = "Hi, how are you?"})
+	vnm.dialog({subject = "Dummy", dialog = "Great, thanks!"})
+end
+
+vnm.registerScene({
+	sceneName = "myFirstScene",
+	sceneFunction = myFirstScene,
+})
+
+vnm.registerChapter({
+	chapterName = "My First Scene",
+	chapterIndex = 1,
+	scenes = {"myFirstScene"},
+})
+---------------------------------------------------------------------------------
+
+Playtest the game and click "New game". You should see three lines of dialog
+spoken:
+Dummy - Hello, world!
+You - Hi, how are you?
+Dummy - Great, thanks
+
+When the dummy is the one speaking, you'll notice that the sprite of the same
+name is emphasized by increasing the brightness and size!
+
+If you don't like some of these behaviors, you can change the way sprites are
+emphasized by going to vnSystem > configuration > sprites.
+
+
+- ADDING MULTIPLE SPRITES -
+But let's say we want more than just one character- say, another character
+introduces themselves in the middle of a scene. How do we do that?
+
+After the last line of dialog in myFirstScene, insert the following code:
+-----------------------------------CODE SAMPLE-----------------------------------
+local noobSprite = vnm.createSprite({
+	name = "Noob",
+	defaultImageName = "noob",
+	autoPosition = -1,
+	transitionType = "slideFromLeft",
+})
+---------------------------------------------------------------------------------
+
+Whoa, we've got a lot more going on! Let's cover the new things we're using.
+
+autoPosition: This value can be one of three numbers indicating where the new
+sprite should be placed: -1 (left), 0 (center), or 1 (right). Since we specified
+-1, this sprite will be positioned on the left.
+
+transitionType: This value indicates how the sprite should appear onscreen.
+Since we specified "slideFromLeft" as the transition type, the Noob sprite will
+enter the scene by sliding in from the left. Compare this to our Dummy sprite:
+We didn't have this value specified, so it appeared instantly, with no
+transition.
+
+Now, let's add a few more lines of dialog from our newly created pal Noob.
+Insert this code after the noobSprite code you just inserted:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.dialog({subject = "Noob", dialog = "Hey, Dummy! Have you paid me back for those $50 yet?"})
+vnm.dialog({subject = "Dummy", dialog = "Uhhh..."})
+---------------------------------------------------------------------------------
+
+Your code should now look like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	local dummySprite = vnm.createSprite({
+		name = "Dummy",
+		defaultImageName = "dummy",
+	})
+	vnm.dialog({subject = "Dummy", dialog = "Hello, world!"})
+	vnm.dialog({subject = "You", dialog = "Hi, how are you?"})
+	vnm.dialog({subject = "Dummy", dialog = "Great, thanks!"})
+	local noobSprite = vnm.createSprite({
+		name = "Noob",
+		defaultImageName = "noob",
+		autoPosition = -1,
+		transitionType = "slideFromLeft",
+	})
+	vnm.dialog({subject = "Noob", dialog = "Hey, Dummy! Have you paid me back for those $50 yet?"})
+	vnm.dialog({subject = "Dummy", dialog = "Uhhh..."})
+end
+
+vnm.registerScene({
+	sceneName = "myFirstScene",
+	sceneFunction = myFirstScene,
+})
+
+vnm.registerChapter({
+	chapterName = "My First Scene",
+	chapterIndex = 1,
+	scenes = {"myFirstScene"},
+})
+---------------------------------------------------------------------------------
+
+Run a playtest once more, and notice how as Noob comes in from the left of the
+screen, Dummy is automatically repositioned so they maintain equal spacing!
+
+
+- EXITING SPRITES -
+Not every sprite is going to stick around to the end of a scene.
+To exit a sprite from the scene, we can use vnm.exitStage().
+At the end of your myFirstScene function, add the following code:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.exitStage({spriteName = "Dummy", transitionType = "slideRight"})
+task.wait(0.5)
+---------------------------------------------------------------------------------
+
+The "task.wait(0.5)" just waits 0.5 seconds.
+
+Your function should now look like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+function myFirstScene()
+	local dummySprite = vnm.createSprite({
+		name = "Dummy",
+		defaultImageName = "dummy",
+	})
+	vnm.dialog({subject = "Dummy", dialog = "Hello, world!"})
+	vnm.dialog({subject = "You", dialog = "Hi, how are you?"})
+	vnm.dialog({subject = "Dummy", dialog = "Great, thanks!"})
+	local noobSprite = vnm.createSprite({
+		name = "Noob",
+		defaultImageName = "noob",
+		autoPosition = -1,
+		transitionType = "slideFromLeft",
+	})
+	vnm.dialog({subject = "Noob", dialog = "Hey, Dummy! Have you paid me back for those $50 yet?"})
+	vnm.dialog({subject = "Dummy", dialog = "Uhhh..."})
+	vnm.exitStage({spriteName = "Dummy", transitionType = "slideRight"})
+	task.wait(0.5)
+	vnm.dialog({subject = "Noob", dialog = "Hey, get back here!"})
+end
+---------------------------------------------------------------------------------
+
+Run another playtest and watch Dummy scurry off when questioned!
+
+]]
+
+--[[
+
+- INTRODUCTION - [ALSO NOT USED IN MY CUSTOM ENNGINE]
+Now we have some characters onscreen, but they're talking in a blank void. Let's
+add a background to give them some scenery!
+
+
+- ADDING A BACKGROUND -
+To add a background, execute the function vnm.setBackground(). Let's start with
+the "baseplate" background.
+Add this code at the top of your scene function:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.setBackground({backgroundName = "baseplate"})
+---------------------------------------------------------------------------------
+This will set the background image to the image specified in
+vnSystem > images > backgrounds.
+Now, the scene should have a baseplate background!
+
+
+- CHANGING THE BACKGROUND -
+To change the background, just run vnm.setBackground() again with a different
+background name. You can also specify the "fadeTime" property if you would like
+the new background to smoothly fade in.
+
+Insert this code right before the line creating the Noob sprite:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.dialog({subject = "Dummy", dialog = "This place is boring. Let's head somewhere new!"})
+vnm.setBackground({backgroundName = "park", fadeTime = 0.5})
+---------------------------------------------------------------------------------
+Now, midway through the scene, the background will change to a park!
+
+]]
+--[[
+
+- INTRODUCTION -
+What's a visual novel without sound? In this lesson, we'll learn how to
+incorporate sound into your visual novel. This includes background music, sound
+effects, and scroll sounds!
+
+
+- PLAYING A SOUND -
+To play a sound, you can use the vnm.playSound() function. Let's use the
+"woosh" sound under vnSystem > sounds > sfx > story.
+Place this code before the line executing exitStage:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.playSound({soundPath = "sfx/story/woosh"})
+---------------------------------------------------------------------------------
+
+For sound effects, it's as simple as that! Now, when the Dummy exits the stage,
+it will be accompanied by a woosh sound.
+
+
+- PLAYING MUSIC -
+Music also uses the vnm.playSound() function, but it also uses an additional
+feature: Audio tracks!
+
+Audio tracks serve the simple function of making sure sounds of the same type
+don't overlap. In this case, we only want one music track playing at a time.
+
+To play a sound in an audio track, specify "track" as a number, like so.
+Add this code to the beginning of your scene function:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.playSound({soundPath = "bgm/calm", track = 1})
+---------------------------------------------------------------------------------
+
+This means that if a sound is already playing in track 1, that sound will
+automatically stop before playing the new sound.
+
+By default, when this happens, the sounds will stop and start immediately. This
+can sound a bit jarring in some cases, so let's use the "fade" property to make
+sure music smoothly transitions from one track to another.
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.playSound({soundPath = "bgm/calm", track = 1, fade = true})
+---------------------------------------------------------------------------------
+
+Now your scene should be accompanied by some pleasant, calm music!
+
+
+- SCROLL SOUNDS -
+Scroll sounds are the sounds that play when dialog is appearing onscreen. This is
+a common practice to convey a character's voice without requiring a unique voice
+recording for every line of dialog, or just to spice up what would otherwise be
+silent dialog.
+
+To change the set of scroll sounds used for a line of dialog, specify the
+property "scrollSoundSetName" in vnm.dialog().
+For our example, we're going to use the "undertale" preset and apply it to the
+line where the player is talking.
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.dialog({subject = "You", dialog = "Hi, how are you?", scrollSoundSetName = "undertale"})
+---------------------------------------------------------------------------------
+
+Now, when the line "Hi, how are you?" is played, you should hear a diifferent
+scroll sound!
+
+However, it can be rather tedious specifying scrollSoundSetName for every single
+line spoken by one character. Instead, we can use linkSubjectToScrollSoundSet to
+make it so that a subject always uses a specific scroll sound set automatically.
+
+At the top of your scene function, add this code:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.linkSubjectToScrollSoundSet({subject = "Dummy", scrollSoundSetName = "oneshot"})
+---------------------------------------------------------------------------------
+
+Now, every time Dummy speaks, the scroll sound set used is the "oneshot" preset!
+
+Don't want to use scroll sounds? You can disable scroll sounds for one line by
+specifying it as "none", or make scroll sounds disabled by default by deleting
+all the sounds inside vnSystem > sounds > sfx > scrollSounds > default.
+
+Now, your script should look like this:
+-----------------------------------CODE SAMPLE-----------------------------------
+local vnm = require(script.Parent.vnModule)
+vnm.init()
+
+function myFirstScene()
+	vnm.linkSubjectToScrollSoundSet({subject = "Dummy", scrollSoundSetName = "oneshot"})
+	vnm.setBackground({backgroundName = "baseplate"})
+	vnm.playSound({soundPath = "bgm/calm", track = 1, fade = true})
+	local dummySprite = vnm.createSprite({
+		name = "Dummy",
+		defaultImageName = "dummy",
+	})
+	vnm.dialog({subject = "Dummy", dialog = "Hello, world!"})
+	vnm.dialog({subject = "You", dialog = "Hi, how are you?", scrollSoundSetName = "undertale"})
+	vnm.dialog({subject = "Dummy", dialog = "Great, thanks!"})
+	vnm.dialog({subject = "Dummy", dialog = "This place is boring. Let's head somewhere new!"})
+	vnm.setBackground({backgroundName = "park", fadeTime = 0.5})
+	local noobSprite = vnm.createSprite({
+		name = "Noob",
+		defaultImageName = "noob",
+		autoPosition = -1,
+		transitionType = "slideFromLeft",
+	})
+	vnm.dialog({subject = "Noob", dialog = "Hey, Dummy! Have you paid me back for those $50 yet?"})
+	vnm.dialog({subject = "Dummy", dialog = "Uhhh..."})
+	vnm.playSound({soundPath = "sfx/story/woosh"})
+	vnm.exitStage({spriteName = "Dummy", transitionType = "slideRight"})
+	task.wait(0.5)
+	vnm.dialog({subject = "Noob", dialog = "Hey, get back here!"})
+end
+
+vnm.registerScene({
+	sceneName = "myFirstScene",
+	sceneFunction = myFirstScene,
+})
+
+vnm.registerChapter({
+	chapterName = "My First Scene",
+	chapterIndex = 1,
+	scenes = {"myFirstScene"},
+})
+---------------------------------------------------------------------------------
+
+And that's the last scripting lesson! The final lesson will teach you how to
+customize the appearance of your visual novel to your liking.
+
+]]
+--[[
+
+- INTRODUCTION -
+Now that you've learned how to create scenes and chapters, create and manipulate
+sprites, set backgrounds, and play sounds, it's time to break away from these
+presets and start making this story your own!
+
+
+- ADDING NEW ASSETS -
+As you may have inferred by now, assets used for your visual novel can be found
+under the vnSystem > sounds and vnSystem > images folders.
+
+To add a new asset, it's as simple as creating a new Sound or ImageLabel object,
+naming it, setting its properties, and then placing it in the proper folder.
+
+
+- REPLACING ASSETS -
+Some assets don't require you to create a new object, and can just be edited by
+changing the properties of an existing object.
+This includes the gui sounds and the menu.
+
+You can find those at the following locations:
+Gui sounds - vnSystem > sounds > sfx > gui
+Menu - vnGui > Menu
+
+
+- THEMING -
+The Gui can be easily customized by configuring the objects under
+vnSystem > configuration > theme.
+
+Edit the Value property of themePreset to the name of any folder under
+vnSystem > themePresets to use any one of the theme presets. If you don't want
+to use a theme preset, set the Value property to "none".
+
+If you edit the background color of frameTemplate, it will change the color for
+all Frame objects. If you edit the TextColor3 property of textTemplate, it will
+change the text color for all text objects, and so on.
+
+You can even add instances such as a UICorner to frameTemplate, and it will be
+copied over into every frame!
+
+Prefer not to use this system? Set the Value property of "useTheme" to false.
+
+Want to disable theming for one specific Gui object? Create a new boolean
+attribute on your object named "noTheme", and set it to true.
+
+]]
+--[[
+
+- INTRODUCTION -
+One of the strengths offered by telling a story through the videogame medium is
+the ability to influence the story. In this lesson, we'll learn how to prompt the
+player with choices, change dialog and events based off the player's decisions,
+and even save choices made during one scene to be referenced in a later scene!
+
+We're starting to get pretty deep into the scripting side of things! This lesson
+assumes you already know the basics covered in the previous lessons, so I'll be
+starting to handhold you less from here on out.
+
+This means we will no longer be explicitly building off of the example story
+we've been writing; you should know enough by now to understand how to implement
+this code into your scenes as needed.
+
+
+- PROMPTING A CHOICE -
+To prompt a choice, we can make use of the vnm.promptChoice() function.
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.promptChoice({choices = {"Choice 1", "Choice 2", "Choice 3"})
+---------------------------------------------------------------------------------
+This will prompt the player with the choices, "Choice 1", "Choice 2", and
+"Choice 3". Simple as that!
+
+
+- REACTING TO CHOICES -
+However, this choice doesn't currently have any impact on the story. To do that,
+we need to save the result from the promptChoice function:
+-----------------------------------CODE SAMPLE-----------------------------------
+local choiceResult = vnm.promptChoice({choices = {"Choice 1", "Choice 2", "Choice 3"})
+---------------------------------------------------------------------------------
+Whoa, what do these new words mean? It means we just saved a variable!
+Specifically, we have saved the result from promptChoice to choiceResult.
+This means that whenever we type choiceResult later on in that function, the
+script will know that we are referring to the choice made by the player!
+
+Let's make sure we did this correctly.
+In the topbar of your Roblox Studio tab, click View, then make sure Output is
+toggled on. You should see a window with some text in it appear on your screen.
+
+The output is a critical feature for debugging code; it allows us to see all
+messages that the code spits out, whether because the programmer explicitly wanted
+a message to be shown in a specific scenario, or because something broke and we
+need to know how it broke.
+
+To print a message to the output, make use of the print() function:
+-----------------------------------CODE SAMPLE-----------------------------------
+local choiceResult = vnm.promptChoice({choices = {"Choice 1", "Choice 2", "Choice 3"})
+print(choiceResult)
+---------------------------------------------------------------------------------
+
+Now, playtest your scene. Once you make your choice, you should see a number
+corresponding to the choice made appear in the output.
+
+At this point, you may be catching on to something: vnModule is no longer doing
+all the work for you. Saving a variable and printing it isn't something built
+into what I wrote, that's just part of the Luau scripting language.
+
+That's right. This is a full-on scripting tutorial now!
+
+Anyway, we've confirmed that promptChoice is executing properly, but now we want
+to actually do something with that result. To do that, we're going to make use
+of an if statement.
+
+An if statement is a way for a script to branch off into different paths
+depending on a condition or set of conditions. Here's a quick example:
+-----------------------------------CODE SAMPLE-----------------------------------
+local randomNumber = math.random(1, 3)
+if coinFlip == 1 then
+	print("Win")
+elseif coinFlip == 2 then
+	print("Lose")
+else
+	print("Tie")
+end
+---------------------------------------------------------------------------------
+This will either print "Win", "Lose", or "Tie", based off the variable
+randomNumber, which is a random number between 1 and 3.
+
+In our case, we might want to show different dialog depending on the choice
+that the player picked. For example:
+-----------------------------------CODE SAMPLE-----------------------------------
+local choiceResult = vnm.promptChoice({choices = {"Choice 1", "Choice 2", "Choice 3"})
+if choiceResult == 1 then
+	vnm.dialog({dialog = "You picked choice 1!"})
+elseif choiceResult == 2 then
+	vnm.dialog({dialog = "You picked choice 2!"})
+elseif choiceResult == 3 then
+	vnm.dialog({dialog = "You picked choice 3!"})
+end
+---------------------------------------------------------------------------------
+
+Now, the dialog played will differ depending on the player's choice!
+
+
+- STORY VARIABLES -
+But let's say the player makes a choice early on in the story, and we want that
+to influence the story later down the line, in the next scene, or the next
+chapter. This is where story variables come in.
+
+Story variables are similar to variables in that they store data to be used
+later. Where story variables differ is that they are tied to save data, meaning
+if you leave and rejoin, the story variables will still be the same as when you
+left!
+
+Story variables can be set through one of two ways. The first way is through
+specifying the variableName parameter of promptChoice:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.promptChoice({choices = {"Vanilla", "Chocolate", "Mint"}, variableName = "favoriteFlavor"})
+---------------------------------------------------------------------------------
+This means that when the player is prompted with this choice, the choice they
+make will be saved to the favoriteFlavor story variable as a number indicating
+their choice.
+
+The second way to set a story variable is to set it directly through the
+setStoryVariable function:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.setStoryVariable({name = "favoriteFlavor", data = 1})
+---------------------------------------------------------------------------------
+
+It's important to note that if you set a story variable directly, the data
+provided can only be a string (text), number, or boolean (true/false). For
+example, this would NOT work:
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.setStoryVariable({name = "lookVector", data = Vector3.new(0, 1, 0)})
+---------------------------------------------------------------------------------
+
+After we set a story variable, we can retrieve it at any time later in the
+story by using getStoryVariable.
+-----------------------------------CODE SAMPLE-----------------------------------
+vnm.promptChoice({choices = {"Vanilla", "Chocolate", "Mint"}, variableName = "favoriteFlavor"})
+
+local favoriteFlavor = vnm.getStoryVariable("favoriteFlavor")
+if favoriteFlavor == 1 then
+	vnm.dialog({dialog = "Your favorite flavor is vanilla!"})
+elseif favoriteFlavor == 2 then
+	vnm.dialog({dialog = "Your favorite flavor is chocolate!"})
+elseif favoriteFlavor == 3 then
+	vnm.dialog({dialog = "Your favorite flavor is mint!"})
+end
+---------------------------------------------------------------------------------
+
+IMPORTANT:
+To allow for New Game+ features, story variables are NOT reset when starting a
+new game. For this reason, it is best practice to explicitly set a variable to
+nil when it first comes into play.
+
+]]
+
+
+NEW FEATURES:
+Court Record, Cross-examination
+
+Ai overview may be wrong in some areas
+
+⚖️ Ace Attorney System Documentation
+1. The 3D Camera System
+Instead of 2D backgrounds, the game uses a 3D environment. The camera "cuts" between pre-set angles to mimic the cinematic style of the original games.
+
+How it works: You place invisible Parts in a folder named CameraParts in the Workspace. The script teleports the player's camera to match the CFrame (Position + Rotation) of these parts.
+
+Standard Angles in court room:
+
+"1": Judge's View
+
+"2": Prosecution 
+
+"3": Defense (You)
+
+"5": Defendant Lobby
+
+"4": Co-Counsel (Clara / Side View)
+
+"6": Gallery (Wide)
+
+"7": Witness Stand (Zoom)
+
+"8": Judge Gavel anim (Close Up)
+"9": Detention Center
+10: My Law Office
+
+Code Usage:
+
+Lua
+-- Cut immediately to the Defense desk
+vnm.setCamera({ cameraName = "3", transitionInfo = { type = "cut" } })
+2. Character Animation System
+Characters are physical 3D models spawned by the Server. Because the Story Script is on the Client, we use RemoteEvents to tell the server what to do.
+
+Setup: At the start of a scene, you MUST call a Setup event to clear the room and spawn the correct actors.
+
+Animation Types:
+
+Loop: Plays forever (Idle, Sweating, Breakdown loop).
+
+OneShot: Plays once (Desk Slam, Finger Point, Shock).
+
+Code Usage:
+
+Lua
+-- 1. Setup the room (Clears old models, spawns new ones)
+clientToServer:FireServer("SetupCourtroom2") -- "2" loads Otto Lock instead of Robbie
+serverToClient.OnClientEvent:Wait() -- Wait for server to finish
+
+-- 2. Play a Loop (Idle)
+clientToServer:FireServer("PlayLoopAnim", "Otto Lock", "107073225451274")
+
+-- 3. Play a OneShot (Shock)
+clientToServer:FireServer("PlayOneShotAnim", "PlayerModel_Cutscene", "116697544329781")
+3. The Court Record (Evidence)
+This is the inventory system. It allows the player to view and "Present" items.
+
+Adding Items: You must add items silently before they can be used.
+
+Presenting: The promptEvidence() function pauses the script, opens the GUI, and waits for the player to click a button. It returns the ID of the item they clicked.
+
+Code Usage:
+
+Lua
+-- Add item to inventory
+vnm.addEvidence({id = "ATMReceipt"})
+
+-- Ask player to present
+local itemID = vnm.promptEvidence()
+
+if itemID == "ATMReceipt" then
+    -- Correct!
+else
+    -- Wrong!
+end
+4. Cross-Examination Logic
+The core gameplay loop. It uses a while loop to keep the player trapped in the testimony until they find the contradiction.
+
+The Structure
+The Loop: while crossExamining do ... end.
+
+The Statements: The testimony is broken into chunks.
+
+The Choice: After every line, the player chooses "Press", "Present", or "Continue".
+
+Press: Triggers a sub-conversation (Player asks "Are you sure?"). Sometimes reveals new info.
+
+Present: Opens the Court Record. If the wrong item is picked, the loop continues. If the right item is picked, we set crossExamining = false to break the loop and advance the story.
+
+Continue: Just moves to the next statement.
+
+Logic Flow Example
+Lua
+local crossExamining = true
+
+while crossExamining do
+    -- STATEMENT 1
+    vnm.dialog({subject="Witness", dialog="I saw nothing!"})
+    local choice = vnm.promptChoice({choices={"Press", "Present", "Continue"}})
+
+    if choice == 1 then
+        -- PRESS LOGIC (Dialogue)
+    elseif choice == 2 then
+        -- PRESENT LOGIC
+        local id = vnm.promptEvidence()
+        if id == "Glasses" then
+            -- CORRECT!
+            crossExamining = false -- Breaks the loop!
+            -- (Play Objection sound, etc.)
+        else
+            -- WRONG (Loop continues)
+        end
+    end
+    
+    -- STATEMENT 2 (Only runs if crossExamining is still true)
+    if crossExamining then
+       -- ...
+    end
+end
+Revising Statements (The "Update" Logic)
+To make a witness change their testimony (like Otto adding the grease detail), we use a simple Boolean Variable.
+
+Lua
+local statementRevised = false -- Track if we updated it
+
+-- Inside the loop:
+if not statementRevised then
+    -- SHOW OLD DIALOGUE
+    vnm.dialog({dialog="I was fixing the door."})
+    -- If player presses here -> Set statementRevised = true
+else
+    -- SHOW NEW DIALOGUE
+    vnm.dialog({dialog="I was fixing the door WITH GREASE."})
+    -- Now the player can present the contradiction
+end
+5. New Visual Novel Features
+vnm.linkSubjectToScrollSoundSet: Assigns a "beep" sound (Male/Female/Typewriter) to a character name so you don't have to set it every line.
+
+vnm.linkSubjectToPortrait: Automatically shows a character's portrait when they speak. Passing nil stops it.
+
+vnm.shake: Shakes the screen for impact (Desk slams).
+
+vnm.stopAudioTrack: Now supports {fade = true} for smooth music transitions.
+
+Placeholder Models: (Defense room) Clara Case Placeholdder Robbie Bankss Placeholdder
+(Court Room)
+Def Placeholder
+Judge Placeholder
+Pros Placeholder
+Side Placeholder
+Witness Placeholder
+
+(Law Office)
+Law Office Placeholder
+
+(Detention Center)
+Detention Center Placeholder.
