@@ -1,0 +1,1 @@
+script.Parent.Parent.Door.PrimaryPart = script.Parent.Hinge
